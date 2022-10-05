@@ -1,55 +1,28 @@
 from pico2d import *
 
 WIDTH, HEIGHT = 1280, 1024
-<<<<<<< HEAD
-
-IDLE = -1
-LEFT, RIGHT = 0, 1
-UP, DOWN = 2, 3
-=======
 SPEED = 8
 IDLE = 0
 LEFT, RIGHT, UP, DOWN = 0b0001, 0b0010, 0b0100, 0b1000
->>>>>>> 90e646d050e28c004529d047f789f70873eeae2e
 
 
 def handle_events():
     global quit
     global running
     global dir
-<<<<<<< HEAD
-    global x, y
-=======
->>>>>>> 90e646d050e28c004529d047f789f70873eeae2e
     global look
     
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
             quit = False
-<<<<<<< HEAD
-=======
         
->>>>>>> 90e646d050e28c004529d047f789f70873eeae2e
         elif event.type == SDL_KEYDOWN:
             running = True
             if event.key == SDLK_ESCAPE:
                 quit = False
             elif event.key == SDLK_LEFT:
                 look = LEFT
-<<<<<<< HEAD
-                dir = LEFT
-            elif event.key == SDLK_RIGHT:
-                look = RIGHT
-                dir = RIGHT
-            elif event.key == SDLK_UP:
-                dir = UP
-            elif event.key == SDLK_DOWN:
-                dir = DOWN
-        elif event.type == SDL_KEYUP:
-            running = False
-            dir = IDLE
-=======
                 dir |= LEFT
             elif event.key == SDLK_RIGHT:
                 look = RIGHT
@@ -70,7 +43,6 @@ def handle_events():
                 dir &= ~DOWN
             if dir == IDLE:
                 running = False
->>>>>>> 90e646d050e28c004529d047f789f70873eeae2e
 
 
 open_canvas(WIDTH, HEIGHT)
@@ -89,25 +61,6 @@ while quit:
     tuk_ground.draw(WIDTH // 2, HEIGHT // 2)
     
     if running:
-<<<<<<< HEAD
-        character.clip_draw(frame * 100, 100 * look, 100, 100, x, y)
-        if dir == LEFT:
-            if not x < 0:
-                x -= 10
-        elif dir == RIGHT:
-            if not x > WIDTH:
-                x += 10
-        elif dir == UP:
-            if not y > HEIGHT:
-                y += 10
-        elif dir == DOWN:
-            if not y < 0:
-                y -= 10
-        delay(0.05)
-    else:
-        character.clip_draw(frame * 100, 100 * (look + 2), 100, 100, x, y)
-        delay(0.125)
-=======
         character.clip_draw(frame * 100, 100 * (look - 1), 100, 100, x, y)
         if dir & LEFT == LEFT and look == LEFT:
             if not x < 0:
@@ -125,7 +78,6 @@ while quit:
     else:
         character.clip_draw(frame * 100, 100 * ((look - 1) + 2), 100, 100, x, y)
         delay(0.1)
->>>>>>> 90e646d050e28c004529d047f789f70873eeae2e
         
     update_canvas()
     handle_events()
