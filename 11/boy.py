@@ -21,6 +21,7 @@ class AUTO_RUN:
     
     def exit(self, event):
         # print('EXIT AUTO_RUN')
+        self.face_dir = self.dir
         pass
     
     def do(self):
